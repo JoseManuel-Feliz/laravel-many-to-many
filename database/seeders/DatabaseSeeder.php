@@ -20,9 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            ProjectSeeder::class,
+            StatusSeeder::class,
             TechnologySeeder::class,
             ProjectTechnologySeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }

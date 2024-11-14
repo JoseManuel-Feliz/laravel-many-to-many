@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('projects', function (Blueprint $table) {
             $table->string('project_title', 40)->nullable(false);
             $table->date('launch_date')->nullable(false);
-            $table->boolean('project_status')->nullable(false)->default(false);
+            $table->string('project_status')->nullable(false)->defualt('in progress');
             $table->text('project_thumbnail')->nullable(true);
             $table->text('repository_url')->nullable(true);
             $table->text('project_summary')->nullable(true);

@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('project_title', 40)->nullable(false);
-            $table->date('launch_date')->nullable(false);
-            $table->text('project_thumbnail')->nullable(true);
-            $table->text('repository_url')->nullable(true);
-            $table->text('project_summary')->nullable(true);
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('status');
         });
     }
 
@@ -26,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn(['project_title', 'launch_date', 'project_thumbnail', 'repository_url', 'project_summary']);
+            $table->dropForeign('projects_status_id_foreign');
+            $table->dropColumn('status_id');
         });
     }
 };

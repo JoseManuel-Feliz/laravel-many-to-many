@@ -1,9 +1,17 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="@yield('route-name','')">
-                @yield('nav-title')
+
+            @guest
+            <a class="navbar-brand" href="{{route('guest.projects.index')}}">
+                My Projects
             </a>
+            @else
+            <a class="navbar-brand" href="{{route('admin.projects.index')}}">
+                Projects Dashboard
+            </a>
+            @endguest
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="{{ __('Toggle navigation') }}">
@@ -13,7 +21,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.projects.index') }}">Admin Section</a>
+                    </li>
+                    @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->

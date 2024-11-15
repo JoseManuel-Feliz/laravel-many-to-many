@@ -1,13 +1,11 @@
 @extends('layouts.create-edit')
 
-
-@section('page-title','Edit')
-
-@section('nav-title', 'Edit')
+@section('form-title')
+{{"You're editing".' '.$project->project_title}}
+@endsection
 
 
 @section('form-route')
-
 {{route('admin.projects.update',$project->id)}}
 @endsection
 

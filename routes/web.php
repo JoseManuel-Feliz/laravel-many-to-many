@@ -15,25 +15,19 @@ use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// | Guest Routes
 Route::name('guest.')->group(function () {
-    Route::get('/projects', [GuestProjectController::class, 'index'])->name('projects.index');
+    Route::get('/', [GuestProjectController::class, 'index'])->name('projects.index');
     Route::get('/projects/{id}', [GuestProjectController::class, 'show'])->name('projects.show');
 });
 
+// | Admin Routes
 Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::get('/projects', [AdminProjectController::class, 'index'])->name('projects.index');
-    Route::get('/projects/create', [AdminProjectController::class, 'create'])->name('projects.create');
-    Route::get('/projects/edit{id}', [AdminProjectController::class, 'edit'])->name('projects.edit');
-    Route::get('/projects/{id}', [AdminProjectController::class, 'show'])->name('projects.show');
-    Route::put('/projects/{id}', [AdminProjectController::class, 'update'])->name('projects.update');
-    Route::post('/projects', [AdminProjectController::class, 'store'])->name('projects.store');
-    Route::delete('/projects/{id}', [AdminProjectController::class, 'destroy'])->name('projects.delete');
+    Route::resource('/projects', AdminProjectController::class);
 });

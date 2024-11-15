@@ -100,10 +100,9 @@
                 @enderror
             </div>
 
-            <!-- Input for  Project img url-->
+            <!-- Input for  Project img -->
             <div class="col-7 form-floating mb-3">
-                <input class="form-control" type="text" name="project_thumbnail" id="img-url"
-                    value="{{old('project_thumbnail',$project->project_thumbnail)}}">
+                <input class="form-control" type="file" name="project_thumbnail" id="img-url">
                 <label for="img-url">Project thumbnail</label>
 
                 <!-- Error Message -->

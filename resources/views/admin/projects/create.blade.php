@@ -1,10 +1,8 @@
 @extends('layouts.create-edit')
 
-
-@section('page-title','Create')
-
-@section('nav-title', 'Create')
-
+@section('form-title')
+{{'Create a new project'}}
+@endsection
 
 @section('form-route')
 {{route('admin.projects.store')}}

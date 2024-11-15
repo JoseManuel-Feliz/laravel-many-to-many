@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
             'project_title' => ['required', 'string', 'min:3', 'max:40'],
             'launch_date' => ['required', 'date', 'after:2024-06-01', 'before:2050-12-31',],
             'repository_url' => ['required', 'url'],
-            'project_thumbnail' => ['required', 'string', 'min:3', 'max:150'],
+            'project_thumbnail' => ['nullable', 'image', 'max:320'],
             'project_summary' => ['required', 'string', 'min:3', 'max:2000'],
             'status_id' => ['required', 'numeric', 'integer', 'min:1', 'exists:statuses,id'],
             "technologies" => ["array", 'min:1', "exists:technologies,id"],

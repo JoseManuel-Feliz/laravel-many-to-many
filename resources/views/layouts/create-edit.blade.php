@@ -18,7 +18,8 @@
             <!-- Title -->
             <h2>@yield('form-title','')</h2>
         </div>
-        <form class="row g-2 justify-content-center" action="@yield('form-route')" method="POST">
+        <form class="row g-2 justify-content-center" action="@yield('form-route')" method="POST"
+            enctype="multipart/form-data">
             @csrf
 
             <!-- Form Methods -->

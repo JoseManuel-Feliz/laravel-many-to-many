@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('page-title','')</title>
+    <!-- Page Title -->
+    <title>@yield('page-title','My Projects')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -22,15 +23,19 @@
 
 <body>
     <div id="app">
+        <!-- Header Partials -->
         @include('partials.header')
 
+        <!-- Main Section -->
         <main class="py-4">
             @yield('main-content')
         </main>
     </div>
 
+    <!-- Footer Partials -->
     @include('partials.footer')
 
+    <!-- Additionals Scrips -->
     @yield('aditionals-scripts','')
 </body>
 

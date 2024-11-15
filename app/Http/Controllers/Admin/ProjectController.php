@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Status;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -25,7 +27,10 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        return view('admin.projects.create', compact('project'));
+
+        $technologies = Technology::all();
+        $statuses = Status::all();
+        return view('admin.projects.create', compact('project', 'technologies', 'statuses'));
     }
 
     /**
@@ -34,8 +39,14 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
-
         $project = Project::create($data);
+
+        if (isset($data["technologies"])) {
+            $project->technologies()->sync($data["technologies"]);
+        } else {
+            $project->technologies()->detach();
+        };
+
         return redirect()->route('admin.projects.show', $project->id);
     }
 
@@ -54,7 +65,10 @@ class ProjectController extends Controller
     public function edit(string $id)
     {
         $project = Project::findOrFail($id);
-        return view('admin.projects.edit', compact('project'));
+
+        $technologies = Technology::all();
+        $statuses = Status::all();
+        return view('admin.projects.edit', compact('project', 'technologies', 'statuses'));
     }
 
     /**
@@ -63,8 +77,14 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, string $id)
     {
         $data = $request->validated();
-
         $project = Project::findOrFail($id);
+
+        if (isset($data["technologies"])) {
+            $project->technologies()->sync($data["technologies"]);
+        } else {
+            $project->technologies()->detach();
+        };
+
         $project->update($data);
 
         return redirect()->route('admin.projects.show', $project->id);

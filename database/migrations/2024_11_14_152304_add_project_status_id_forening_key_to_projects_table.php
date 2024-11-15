@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('status');
+            $table->unsignedBigInteger('status_id')->after('id');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
